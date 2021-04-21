@@ -2,11 +2,12 @@ import pdb
 from models.author import Author
 from models.book import Book
 
-import repositories.author_repository as author_repository
 import repositories.book_repository as book_repository
+import repositories.author_repository as author_repository
 
-author_repository.delete_all()
+
 book_repository.delete_all()
+author_repository.delete_all()
 
 author_1 = Author("JRR Tolkien")
 author_repository.save(author_1)

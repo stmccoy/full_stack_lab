@@ -30,13 +30,13 @@ def select(id):
         author = Author(result['name'], result['id'] )
     return author
 
-# def select_all():
-#     authors = []
+def select_all():
+    authors = []
 
-#     sql = "SELECT * FROM authors"
-#     results = run_sql(sql)
+    sql = "SELECT * FROM authors"
+    results = run_sql(sql)
 
-#     for row in results:
-#         author = Author(row['name'], row['id'] )
-#         authors.append(author)
-#     return authors
+    for row in results:
+        author = Author(row['name'], row['id'] )
+        authors.append(author)
+    return authors

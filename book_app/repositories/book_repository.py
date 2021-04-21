@@ -9,8 +9,8 @@ def save(book):
     sql = "INSERT INTO books (title, author_id) VALUES (%s, %s) RETURNING *"
     values = [book.title, book.author.id]
     results = run_sql(sql, values)
-    id = results[0]['id']
-    book.id = id
+    id = results[0]["id"]
+    book.id = 1
     return book
 
 def delete_all():
@@ -30,16 +30,17 @@ def select(id):
 
     if result is not None:
         author = author_repository.select(result['author_id'])
-        book = Book(result['title'], result['id'] )
+        book = Book(result['title'], author, result['id'] )
     return book
 
-# def select_all():
-#     books = []
+def select_all():
+    books = []
 
-#     sql = "SELECT * FROM books"
-#     results = run_sql(sql)
+    sql = "SELECT * FROM books"
+    results = run_sql(sql)
 
-#     for row in results:
-#         book = Book(row['title'], row['id'] )
-#         authors.append(author)
-#     return authors
+    for row in results:
+        author = author_repository.select(row['author_id'])
+        book = Book(row['title'], author, row['id'])
+        books.append(book)
+    return books
